@@ -1,0 +1,18 @@
+{
+    "name": "CAS.UserConsent-Editor",
+    "references": [
+        "CAS.UserConsent",
+        "CleverAdsSolutions-Editor",
+        "CleverAdsSolutions"
+    ],
+    "optionalUnityReferences": [],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": []
+}

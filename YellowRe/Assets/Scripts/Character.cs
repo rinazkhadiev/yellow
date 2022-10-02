@@ -24,7 +24,7 @@ public class Character : MonoBehaviour
 
     private bool _isStandUp;
 
-    private bool _inGround;
+    public bool InGround;
 
     private void Start()
     {
@@ -36,6 +36,11 @@ public class Character : MonoBehaviour
         if (PlayerPrefs.HasKey("Graphics") && PlayerPrefs.GetInt("Graphics") == 0)
         {
             AllObjects.Singleton.VolumeGameObject.SetActive(false);
+        }
+
+        if(AllObjects.Singleton.PartNumber == 3)
+        {
+            StartCoroutine(TransformChange(AllObjects.Singleton.CharacterThirdStartPos.position));
         }
     }
 
@@ -110,7 +115,7 @@ public class Character : MonoBehaviour
     IEnumerator Step()
     {
         _isStepping = true;
-        if (_inGround)
+        if (InGround)
         {
             AllObjects.Singleton.MainSource.PlayOneShot(AllObjects.Singleton.StepClips[Random.Range(0, AllObjects.Singleton.StepClips.Length)]);
 
@@ -150,7 +155,7 @@ public class Character : MonoBehaviour
     {
         if (other.tag == "Ground")
         {
-            _inGround = true;
+            InGround = true;
         }
     }
 
@@ -158,7 +163,7 @@ public class Character : MonoBehaviour
     {
         if (other.tag == "Ground")
         {
-            _inGround = false;
+            InGround = false;
         }
     }
 

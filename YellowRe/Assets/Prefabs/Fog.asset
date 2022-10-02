@@ -802,25 +802,6 @@ MonoBehaviour:
     m_Value: 0.695
     min: 0
     max: 1
---- !u!114 &-2166445615371021534
-MonoBehaviour:
-  m_ObjectHideFlags: 3
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 81180773991d8724ab7f2d216912b564, type: 3}
-  m_Name: ChromaticAberration
-  m_EditorClassIdentifier: 
-  active: 1
-  m_AdvancedMode: 0
-  intensity:
-    m_OverrideState: 1
-    m_Value: 0.2
-    min: 0
-    max: 1
 --- !u!114 &-1411102553195207274
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -882,65 +863,6 @@ MonoBehaviour:
     m_Value: 1
     min: 0.01
     max: 5
---- !u!114 &-1244085405111135342
-MonoBehaviour:
-  m_ObjectHideFlags: 3
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cdfbdbb87d3286943a057f7791b43141, type: 3}
-  m_Name: ChannelMixer
-  m_EditorClassIdentifier: 
-  active: 1
-  m_AdvancedMode: 0
-  redOutRedIn:
-    m_OverrideState: 0
-    m_Value: 53
-    min: -200
-    max: 200
-  redOutGreenIn:
-    m_OverrideState: 0
-    m_Value: -84
-    min: -200
-    max: 200
-  redOutBlueIn:
-    m_OverrideState: 1
-    m_Value: -10
-    min: -200
-    max: 200
-  greenOutRedIn:
-    m_OverrideState: 0
-    m_Value: 0
-    min: -200
-    max: 200
-  greenOutGreenIn:
-    m_OverrideState: 0
-    m_Value: 100
-    min: -200
-    max: 200
-  greenOutBlueIn:
-    m_OverrideState: 1
-    m_Value: -10
-    min: -200
-    max: 200
-  blueOutRedIn:
-    m_OverrideState: 0
-    m_Value: 0
-    min: -200
-    max: 200
-  blueOutGreenIn:
-    m_OverrideState: 0
-    m_Value: 0
-    min: -200
-    max: 200
-  blueOutBlueIn:
-    m_OverrideState: 0
-    m_Value: 100
-    min: -200
-    max: 200
 --- !u!114 &-711133314348633631
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -978,13 +900,11 @@ MonoBehaviour:
   m_Name: Fog
   m_EditorClassIdentifier: 
   components:
+  - {fileID: -6682466258659729936}
+  - {fileID: 4966597771961479462}
+  - {fileID: 3340391195333542229}
   - {fileID: -711133314348633631}
   - {fileID: 6555364303716541473}
-  - {fileID: -1244085405111135342}
-  - {fileID: -6682466258659729936}
-  - {fileID: 3340391195333542229}
-  - {fileID: -2166445615371021534}
-  - {fileID: 4966597771961479462}
 --- !u!114 &216338993533201966
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -1343,7 +1263,7 @@ MonoBehaviour:
     m_Value: {x: 1, y: 1, z: 1, w: 0}
   gamma:
     m_OverrideState: 1
-    m_Value: {x: 1, y: 0.9907779, z: 0.68199, w: 0.21136913}
+    m_Value: {x: 1, y: 0.98649585, z: 0.690655, w: 0.14833128}
   gain:
     m_OverrideState: 1
     m_Value: {x: 1, y: 0.68196845, z: 0.6872046, w: 0}

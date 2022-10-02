@@ -16,7 +16,10 @@ public class SceneLoader : MonoBehaviour
     [SerializeField] private GameObject _highSettings;
     [SerializeField] private GameObject _lowSettings;
 
+    [SerializeField] private Button _firstPartButton;
     [SerializeField] private Button _secondPartButton;
+    [SerializeField] private Button _thirdPartButton;
+
     [SerializeField] private GameObject _soonText;
     [SerializeField] private GameObject[] _partTexts;
 
@@ -26,6 +29,15 @@ public class SceneLoader : MonoBehaviour
 
         if(SceneManager.GetActiveScene().name == "Main")
         {
+            if (PlayerPrefs.HasKey("Session"))
+            {
+                PlayerPrefs.SetInt("Session", 2);
+            }
+            else
+            {
+                PlayerPrefs.SetInt("Session", 1);
+            }
+
             if (PlayerPrefs.HasKey("Graphics") && PlayerPrefs.GetInt("Graphics") == 0)
             {
                 _highSettings.SetActive(false);
@@ -34,41 +46,34 @@ public class SceneLoader : MonoBehaviour
 
             if (PlayerPrefs.HasKey("PartTwo"))
             {
-                if(PlayerPrefs.GetInt("PartTwo") == 1)
-                {
-                    _soonText.SetActive(true);
-                    _partTexts[0].SetActive(false);
-                    //_partTexts[1].SetActive(true);
-                    //_secondPartButton.interactable = true;
+                _secondPartButton.interactable = true;
 
-                    if (PlayerPrefs.HasKey("PartThird"))
-                    {
-                        if(PlayerPrefs.GetInt("PartThird") == 1)
-                        {
-                            //_partTexts[0].SetActive(false);
-                            //_partTexts[1].SetActive(false);
-                            //_partTexts[2].SetActive(true);
-                        }
-                    }
+                if (PlayerPrefs.HasKey("PartThird"))
+                {
+                    _thirdPartButton.interactable = true;
+                    _partTexts[2].SetActive(true);
+                    _thirdPartButton.gameObject.GetComponent<Animation>().Play();
+                }
+                else
+                {
+                    _secondPartButton.gameObject.GetComponent<Animation>().Play();
+                    _partTexts[1].SetActive(true);
                 }
             }
             else
             {
+                _firstPartButton.gameObject.GetComponent<Animation>().Play();
                 _partTexts[0].SetActive(true);
             }
 
-            //Firebase.FirebaseApp.CheckAndFixDependenciesAsync().ContinueWith(task =>
-            //{
-            //    var dependencyStatus = task.Result;
-            //    if (dependencyStatus == Firebase.DependencyStatus.Available)
-            //    {
-            //        // Create and hold a reference to your FirebaseApp,
-            //        // where app is a Firebase.FirebaseApp property of your application class.
-            //        Firebase.FirebaseApp app = Firebase.FirebaseApp.DefaultInstance;
-
-            //        // Set a flag here to indicate whether Firebase is ready to use by your app.
-            //    }
-            //});
+            Firebase.FirebaseApp.CheckAndFixDependenciesAsync().ContinueWith(task =>
+            {
+                var dependencyStatus = task.Result;
+                if (dependencyStatus == Firebase.DependencyStatus.Available)
+                {
+                    Firebase.FirebaseApp app = Firebase.FirebaseApp.DefaultInstance;
+                }
+            });
         }
     }
 
@@ -105,7 +110,7 @@ public class SceneLoader : MonoBehaviour
         while (!opertaion.isDone)
         {
             float progress = opertaion.progress / 0.9f;
-            if(progress <= 0.98f)
+            if (progress <= 0.98f)
             {
                 _loadBarImage.fillAmount = progress;
                 _loadText.text = string.Format("{0:0}%", progress * 100);

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<dependencies>
+  <androidPackages>
+    <androidPackage spec="com.cleveradssolutions:yandex:5.2.1.0" version="5.2.1.0"/>
+    <androidPackage spec="com.yandex.android:mobileads:5.2.1" version="5.2.1"/>
+  </androidPackages>
+</dependencies>

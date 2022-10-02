@@ -36,71 +36,111 @@ public class BabyAnimation : MonoBehaviour
             _noNoAnimTimer = 3;
         }
 
-        if (AllObjects.Singleton.PartManager.FirstTouchBaby)
+        if (AllObjects.Singleton.PartNumber == 1)
         {
-            if (AllObjects.Singleton.PartManager.BootleGived)
+            if (AllObjects.Singleton.PartManager.FirstTouchBaby)
             {
-                if (AllObjects.Singleton.PartManager.BabyInArms)
+                if (AllObjects.Singleton.PartManager.BootleGived)
                 {
-                    if (AllObjects.Singleton.PartManager.BabyScream)
+                    if (AllObjects.Singleton.PartManager.BabyInArms)
                     {
-                        if (AllObjects.Singleton.PartManager.BabyIsRunning)
+                        if (AllObjects.Singleton.PartManager.BabyScream)
                         {
-                            _currentAnim = Anims.Run.ToString();
-                            Eye3(0.25f);
+                            if (AllObjects.Singleton.PartManager.BabyIsRunning)
+                            {
+                                _currentAnim = Anims.Run.ToString();
+                                Eye3(0.25f);
+                            }
+                            else
+                            {
+                                _currentAnim = Anims.Scream.ToString();
+                                Eye3(0.25f);
+                            }
                         }
                         else
                         {
-                            _currentAnim = Anims.Scream.ToString();
-                            Eye3(0.25f);
+                            _currentAnim = Anims.Old_Man_Idle.ToString();
+                            Eye2(1.5f);
                         }
                     }
                     else
                     {
-                        _currentAnim = Anims.Old_Man_Idle.ToString();
-                        Eye2(1.5f);
+                        _currentAnim = Anims.Sitting_Clap.ToString();
                     }
                 }
                 else
                 {
-                    _currentAnim = Anims.Sitting_Clap.ToString();
+                    if (NoNoAnim)
+                    {
+                        _currentAnim = Anims.Sitting_Disapproval.ToString();
+                    }
+                    else
+                    {
+
+                        _currentAnim = Anims.Sitting_Laughing.ToString();
+
+                        if (_scaryAudioTimer > 0)
+                        {
+                            _scaryAudioTimer -= Time.deltaTime;
+                        }
+                        else
+                        {
+                            _scaryAudioTimer = 10;
+                            AllObjects.Singleton.PartManager.ScarySource.PlayOneShot(AllObjects.Singleton.PartManager.ScarySounds[Random.Range(0, AllObjects.Singleton.PartManager.ScarySounds.Length)]);
+                        }
+                    }
                 }
             }
             else
             {
-                if (NoNoAnim)
+                _currentAnim = Anims.Sitting_Laughing.ToString();
+
+                if (_scaryAudioTimer > 0)
                 {
-                    _currentAnim = Anims.Sitting_Disapproval.ToString();
+                    _scaryAudioTimer -= Time.deltaTime;
                 }
                 else
                 {
-
-                    _currentAnim = Anims.Sitting_Laughing.ToString();
-
-                    if (_scaryAudioTimer > 0)
-                    {
-                        _scaryAudioTimer -= Time.deltaTime;
-                    }
-                    else
-                    {
-                        _scaryAudioTimer = 10;
-                        AllObjects.Singleton.PartManager.ScarySource.PlayOneShot(AllObjects.Singleton.PartManager.ScarySounds[Random.Range(0, AllObjects.Singleton.PartManager.ScarySounds.Length)]);
-                    }
+                    _scaryAudioTimer = 10;
+                    AllObjects.Singleton.PartManager.ScarySource.PlayOneShot(AllObjects.Singleton.PartManager.ScarySounds[Random.Range(0, AllObjects.Singleton.PartManager.ScarySounds.Length)]);
                 }
+            }
+        }
+        else if (AllObjects.Singleton.PartNumber == 2)
+        {
+            if (AllObjects.Singleton.BabySecondIsRun)
+            {
+                _currentAnim = Anims.Run.ToString();
+            }
+            else
+            {
+                _currentAnim = Anims.Old_Man_Idle.ToString();
             }
         }
         else
         {
-            _currentAnim = Anims.Sitting_Laughing.ToString();
-
-            if (_scaryAudioTimer > 0)
+            if (AllObjects.Singleton.PartManager.PacifierIsGived)
             {
-                _scaryAudioTimer -= Time.deltaTime;
+                if(BabyController.Singleton.PacifierIndex == 1)
+                {
+                    _currentAnim = Anims.Old_Man_Idle.ToString();
+                }
+                else
+                {
+                    if (BabyController.Singleton.BabyInPosition)
+                    {
+                        _currentAnim = Anims.Old_Man_Idle.ToString();
+                    }
+                    else
+                    {
+                        _currentAnim = Anims.Run.ToString();
+                    }
+                }
             }
             else
             {
-                _scaryAudioTimer = 10;
-                AllObjects.Singleton.PartManager.ScarySource.PlayOneShot(AllObjects.Singleton.PartManager.ScarySounds[Random.Range(0, AllObjects.Singleton.PartManager.ScarySounds.Length)]);
+                _currentAnim = Anims.Sitting_Laughing.ToString();
+                
             }
         }
     }

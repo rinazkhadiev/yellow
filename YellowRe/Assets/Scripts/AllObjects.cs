@@ -9,6 +9,8 @@ public class AllObjects : MonoBehaviour
     [Header("Another")]
 
     public JoystickController JoyController;
+    public AnalyticsEvent AnalyticsEvent;
+    public Review ReviewScript;
     public Part PartManager;
     public int PartNumber;
     public bool IsPause;
@@ -17,6 +19,23 @@ public class AllObjects : MonoBehaviour
 
     public SkinnedMeshRenderer[] BabyEyes;
     public Material[] EyesMaterials;
+
+    public Transform BabySecondPartTransform;
+    public Transform BabyThirdPartTransform;
+    public Transform CharacterThirdStartPos;
+    public bool BabySecondIsRun;
+    public GameObject[] Doors;
+    public Transform CharacterSecondPos;
+    public Image RedVinetImage;
+
+    public GameObject[] Steps;
+    public GameObject Arrow;
+
+    public GameObject WhatIsFloorDown;
+    public GameObject WhatIsFloorUp;
+
+    public Transform[] ThirdPartBabyPosition;
+    public GameObject ThirdPartPacifier;
 
     [Header("UI")]
 
@@ -29,18 +48,24 @@ public class AllObjects : MonoBehaviour
 
 
 
-
     public Text TimerText;
 
     public GameObject StartEngineButton;
 
     public GameObject FinishFirstImage;
     public GameObject FinishSecondImage;
+    public GameObject FinishThirdImage;
+
+    public GameObject FindAllToysButton;
 
     public GameObject ScreamImage;
     public Image FailImage;
     public GameObject FailMenu;
     public GameObject[] FailTexts;
+
+    public Text CurrentFindText;
+
+    public GameObject PacifierGiveButton;
 
     [Header("Audio")]
 
@@ -53,6 +78,7 @@ public class AllObjects : MonoBehaviour
     public AudioClip SeadDownClip;
 
     public AudioSource LoseAudio;
+    public AudioClip TeleportSound;
 
     private void Awake()
     {

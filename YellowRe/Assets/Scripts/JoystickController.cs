@@ -8,14 +8,25 @@ public class JoystickController : MonoBehaviour, IPointerUpHandler, IPointerDown
     [SerializeField] private Image _joystick;
     private Vector2 _inputVector;
 
+    private Vector2 _startPos;
+
+    private void Start()
+    {
+        _startPos = _joystickBG.rectTransform.anchoredPosition;
+    }
+
     public virtual void OnPointerUp(PointerEventData ped)
     {
         _inputVector = Vector2.zero;
         _joystick.rectTransform.anchoredPosition = Vector2.zero;
+
+        _joystickBG.rectTransform.anchoredPosition = _startPos;
+
     }
 
     public virtual void OnPointerDown(PointerEventData ped)
     {
+        _joystickBG.gameObject.transform.position = ped.position;
         OnDrag(ped);
     }
 

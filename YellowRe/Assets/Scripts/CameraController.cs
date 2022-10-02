@@ -23,6 +23,11 @@ public class CameraController : MonoBehaviour, IDragHandler
         }
 
         _moveX = -90;
+
+        if(AllObjects.Singleton.PartNumber == 3)
+        {
+            _moveX = 315;
+        }
     }
     private void Update()
     {
@@ -36,7 +41,6 @@ public class CameraController : MonoBehaviour, IDragHandler
         _cameraTransform.rotation = Quaternion.Euler(_moveY, _moveX, _cameraTransform.eulerAngles.z);
         Character.Singleton.Transform.rotation = Quaternion.Euler(new Vector3(0, _moveX, 0));
     } 
-
     public void OnDrag(PointerEventData eventData)
     {
         _moveY -= eventData.delta.y / _sensitivity;
